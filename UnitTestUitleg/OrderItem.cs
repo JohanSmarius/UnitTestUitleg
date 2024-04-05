@@ -9,6 +9,9 @@ namespace UnitTestUitleg
     public class OrderItem
     {
         public int Quantity { get; set; }
+
         public string Product { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

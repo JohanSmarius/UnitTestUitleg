@@ -1,14 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace UnitTestUitleg;
 
-namespace UnitTestUitleg
+public class Order
 {
-    public class Order
+    public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public string Customer { get; set; }
+
+    public decimal TotalPrice
     {
-        public List<OrderItem> OrderItems { get; set; }
-        public string Customer { get; set; }
+        get
+        {
+            decimal total = 0;
+            foreach (var item in OrderItems)
+            {
+                total += item.Price;
+            }
+
+            // Als totaal >= 100, dan 5% korting
+            // anders geen korting
+            if (total >= 100)
+            {
+                total *= 0.95m;
+            }
+
+            return total;
+        }
     }
 }
